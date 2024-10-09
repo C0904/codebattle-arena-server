@@ -1,0 +1,95 @@
+{
+  "taskDefinitionArn": "arn:aws:ecs:ap-northeast-2:132745038272:task-definition/task-marginking:8",
+  "containerDefinitions": [
+    {
+      "name": "container-marginking-nestjs",
+      "image": "132745038272.dkr.ecr.ap-northeast-2.amazonaws.com/repository/server/marginking",
+      "cpu": 0,
+      "portMappings": [
+        {
+          "name": "nestjs-server-port",
+          "containerPort": 3003,
+          "hostPort": 3003,
+          "protocol": "tcp",
+          "appProtocol": "http"
+        }
+      ],
+      "essential": true,
+      "environment": [],
+      "entryPoint": ["npm", "run", "start:prod"],
+      "environmentFiles": [],
+      "mountPoints": [],
+      "volumesFrom": [],
+      "ulimits": [],
+      "healthCheck": {
+        "command": [
+          "CMD-SHELL",
+          "curl -f http://localhost:3003/system/ping || exit 1"
+        ],
+        "interval": 60,
+        "timeout": 60,
+        "retries": 5,
+        "startPeriod": 60
+      },
+      "logConfiguration": {
+        "logDriver": "awslogs",
+        "options": {
+          "awslogs-create-group": "true",
+          "awslogs-group": "/ecs/task-marginking",
+          "awslogs-region": "ap-northeast-2",
+          "awslogs-stream-prefix": "ecs"
+        },
+        "secretOptions": []
+      },
+      "systemControls": []
+    }
+  ],
+  "family": "task-marginking",
+  "taskRoleArn": "arn:aws:iam::132745038272:role/role-ecs",
+  "executionRoleArn": "arn:aws:iam::132745038272:role/role-ecs",
+  "networkMode": "awsvpc",
+  "revision": 8,
+  "volumes": [],
+  "status": "ACTIVE",
+  "requiresAttributes": [
+    {
+      "name": "com.amazonaws.ecs.capability.logging-driver.awslogs"
+    },
+    {
+      "name": "ecs.capability.execution-role-awslogs"
+    },
+    {
+      "name": "com.amazonaws.ecs.capability.ecr-auth"
+    },
+    {
+      "name": "com.amazonaws.ecs.capability.docker-remote-api.1.19"
+    },
+    {
+      "name": "com.amazonaws.ecs.capability.task-iam-role"
+    },
+    {
+      "name": "ecs.capability.execution-role-ecr-pull"
+    },
+    {
+      "name": "com.amazonaws.ecs.capability.docker-remote-api.1.18"
+    },
+    {
+      "name": "ecs.capability.task-eni"
+    },
+    {
+      "name": "com.amazonaws.ecs.capability.docker-remote-api.1.29"
+    }
+  ],
+  "placementConstraints": [],
+  "compatibilities": ["EC2", "FARGATE"],
+  "requiresCompatibilities": ["FARGATE"],
+  "cpu": "256",
+  "memory": "512",
+  "runtimePlatform": {
+    "cpuArchitecture": "X86_64",
+    "operatingSystemFamily": "LINUX"
+  },
+  "registeredAt": "2024-04-25T08:31:08.313Z",
+  "registeredBy": "arn:aws:iam::132745038272:root",
+  "tags": []
+}
