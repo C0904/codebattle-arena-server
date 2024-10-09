@@ -4,6 +4,9 @@
 /local_volume
 dist
 
+#firebase
+firebase-adminsdk.json
+
 # Logs
 logs
 *.log
